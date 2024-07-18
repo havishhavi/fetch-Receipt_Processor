@@ -6,34 +6,26 @@ A web service that fulfills the documented API for processing receipts and calcu
 
 This project follows the Model-View-Controller (MVC) architecture, where the software components are located in the following directories:
 
--receipt_processor/
-        main.go :Entry Point of the application
-        controller/ : handles HTTP request, interaction with models
-                receipt_controller : handlers for processing receipts and retrieving points. Interacts wit the clients.
-        model/ : has logic and data structures
-                receipt.go : structure firo for receipts and items.
-                response : structure for respnse
-                points_calculator: calculates points based on the receipt rules.
-                points_calculator_test: one test case provide to perform unit testing.
-        view/ : formats response data
-                receipt_view : sends JSON response
-        Readme.md : has all the instructions to run the file on local (use make file)
+- fetch-receipt_processor/
+- **main.go**: Entry Point of the application.
 
-        
-     Fetch-Receipt_Processor/
-├── main.go : Entry point of the application
-├── controllers/ : Handles HTTP requests, interaction with models
-│ ├── receipt_controller.go : Handlers for processing receipts and retrieving points. Interacts with the clients.
-├── models/ : Contains logic and data structures
-│ ├── receipt.go : Structure for receipts and items.
-│ ├── response.go : Structure for responses.
-│ ├── points_calculator.go : Calculates points based on the receipt rules.
-│ └── points_calculator_test.go : Unit test case for the points calculator.
-├── views/ : Formats response data
-│ └── receipt_view.go : Sends JSON response.
-├── go.mod : Dependency management file.
-├── Makefile : Makefile for running and testing the application.
-└── README.md : Instructions to run the application locally.
+### controller/
+Handles HTTP requests and interaction with models.
+
+- **receipt_controller**: Handlers for processing receipts and retrieving points. Interacts with clients.
+
+### model/
+Logic and data structures.
+
+- **receipt.go**: Structure definition for receipts and items.
+- **response.go**: Structure for responses.
+- **points_calculator.go**: Calculates points based on receipt rules.
+- **points_calculator_test.go**: Unit test cases for points calculator.
+
+### view/
+Formats response data.
+
+- **receipt_view.go**: Sends JSON responses.
 
 ## Instructions to Run the Application
 
@@ -51,28 +43,29 @@ This project follows the Model-View-Controller (MVC) architecture, where the sof
    go mod tidy
    
 5. **Run the Project**
- Using the Makefile:
-```bash
- make run
+   
+   Using the Makefile:
+   
+   ```bash
+     make run
 
 If you get an error that make is not recognized, run the code directly:
-```bash
- go run main.go
-# or
-```bash
- go run . 
 
+    
+        go run main.go
+  or
+    
+        go run . 
 
- ##Instructions to test application.
- test the project (by using make command)
+## Instructions to test application.
+   test the project (by using make command)
+   
+        make test
 
- ```bash
-  make test
-
- if you get any error as make is not recognized ,
-    directly test the code
-    ```bash go test ./model -v
-
+   if you get any error as make is not recognized ,
+     directly test the code
+     
+        go test ./model -v
 
 ## Testing with Postman
 
@@ -86,6 +79,7 @@ Run the code as mentioned above.
    - Send the request.
    - You will receive a response with an ID.
 
+
 ### Create a GET Request
 
 2. Create a GET request:
@@ -94,8 +88,29 @@ Run the code as mentioned above.
    - Example: `http://localhost:8084/receipts/b6a1482c-a040-4659-9858-be32a1927f3f/points`
    - Send the request.
    - You will receive the points based on the criteria.
-
+### Raw json Data, Id and Points
+       
+           {
+            "retailer": "Target",
+            "purchaseDate": "2024-07-01",
+            "purchaseTime": "18:01",
+            "items": [
+                {"shortDescription": "Air jordan Highs Retro", "price": "98.17"},
+                {"shortDescription": "Yeezy V@2", "price": "200"},
+                {"shortDescription": "Rolex Watch 1807", "price": "200"}
+        
+            ],
+            "total": "498.17"
+        }
+                
+        {
+            "id": "b6a1482c-a040-4659-9858-be32a1927f3f"
+        }
+        {
+            "points": 117
+        }
+        
 ### Note
-
-The project runs on port 8084 in localhost.
+- Screenshots are in Images.md file
+- The project runs on port 8084 in localhost.
 
