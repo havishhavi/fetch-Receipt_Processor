@@ -1,4 +1,4 @@
-Receipt Processor
+Fetch Receipt Processor
 A webservice that fulfils the documented API
  // Structure
  i followed Model-View-Controller(MVC) architecture structure, where the software components are located into the following directories:
